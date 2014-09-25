@@ -168,5 +168,3 @@ public class MyActivity extends BaseActivity {
     return Observable.from(text).toList();
   }
 }
-
-
