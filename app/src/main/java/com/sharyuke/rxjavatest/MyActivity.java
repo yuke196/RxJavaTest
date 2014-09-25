@@ -53,7 +53,7 @@ public class MyActivity extends BaseActivity {
     Observable.from(1, 2, 3, 4, 5, 6).flatMap(new Func1<Integer, Observable<Integer>>() {
       @Override
       public Observable<Integer> call(Integer a) {
-        Log.i("---这是Integer->>", "----->> " + a);
+        Log.i("--我比subscribe先执行 ————-这是Integer->>", "----->> " + a);
         return Observable.from(a);
       }
     }).subscribe(new Action1<Integer>() {
@@ -85,10 +85,10 @@ public class MyActivity extends BaseActivity {
         });
 
     List<String> ls = new ArrayList<String>();
-    ls.add("one");
-    ls.add("one");
-    ls.add("one");
-    ls.add("one");
+    ls.add("天使");
+    ls.add("娘子");
+    ls.add("美丽");
+    ls.add("永远");
 
     Observable.from(ls)
         .subscribeOn(Schedulers.newThread())
@@ -111,8 +111,6 @@ public class MyActivity extends BaseActivity {
           }
         });
 
-    //------------------以上的都没问题
-
     query("可惜").subscribe(new Action1<List<String>>() {
       @Override public void call(List<String> strings) {
         for (String str : strings) {
@@ -120,9 +118,53 @@ public class MyActivity extends BaseActivity {
         }
       }
     });
+    //------------------以上的都没问题
+
+    query("可惜", "不可惜").subscribe(new Action1<List<String>>() {
+      @Override public void call(List<String> strings) {
+        for (String str : strings) {
+          System.out.println("---我是无敌 第二代------->>>   " + str);
+        }
+      }
+    });
+
+    query("可惜", "不可惜", "非常不可惜").flatMap(new Func1<List<String>, Observable<String>>() {
+      @Override
+      public Observable<String> call(List<String> urls) {
+        return Observable.from(urls);
+      }
+    }).toList().subscribe(new Action1<List<String>>() {
+      @Override public void call(List<String> strings) {
+        for (String str : strings) {
+          System.out.println("---我是无敌 第三代------->>>   " + str);
+        }
+      }
+    });
+
+    /*
+      }).subscribe(new Action1<List<String>>() {  ---->>>>  }).toList().subscribe(new Action1<List<String>>() {
+      0 9-25 14:48:50.996  32362-32362/com.sharyuke.rxjavatest W/System.err﹕ RxJava => Could not find function language adaptor: Groovy with path: rx.lang.groovy.GroovyAdaptor
+      09-25 14:48:50.996  32362-32362/com.sharyuke.rxjavatest W/System.err﹕ RxJava => Could not find function language adaptor: JRuby with path: rx.lang.jruby.JRubyAdaptor
+      09-25 14:48:50.996  32362-32362/com.sharyuke.rxjavatest W/System.err﹕ RxJava => Could not find function language adaptor: Clojure with path: rx.lang.clojure.ClojureAdaptor
+      09-25 14:48:50.996  32362-32362/com.sharyuke.rxjavatest W/System.err﹕ RxJava => Could not find function language adaptor: Scala with path: rx.lang.scala.ScalaAdaptor
+      就不发生这的错误了
+
+     */
   }
 
   Observable<List<String>> query(String text) {
+    return Observable.from(text).toList();
+  }
+
+  Observable<List<String>> query(String... text) {
+    return Observable.from(text).toList();
+  }
+
+  Observable<List<Integer>> query(Integer text) {
+    return Observable.from(text).toList();
+  }
+
+  Observable<List<Integer>> query(Integer... text) {
     return Observable.from(text).toList();
   }
 }
