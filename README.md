@@ -1,4 +1,5 @@
-```\npackage com.sharyuke.rxjavatest;
+```
+package com.sharyuke.rxjavatest;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -167,4 +168,5 @@ public class MyActivity extends BaseActivity {
   Observable<List<Integer>> query(Integer... text) {
     return Observable.from(text).toList();
   }
-}\n```
+}
+```
