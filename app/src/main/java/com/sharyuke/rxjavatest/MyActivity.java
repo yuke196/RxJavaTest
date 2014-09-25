@@ -113,6 +113,17 @@ public class MyActivity extends BaseActivity {
 
     //------------------以上的都没问题
 
+    query("可惜").subscribe(new Action1<List<String>>() {
+      @Override public void call(List<String> strings) {
+        for (String str : strings) {
+          System.out.println("---我是无敌------->>>   " + str);
+        }
+      }
+    });
+  }
+
+  Observable<List<String>> query(String text) {
+    return Observable.from(text).toList();
   }
 }
 
