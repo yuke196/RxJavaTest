@@ -151,6 +151,7 @@ public class MyActivity extends BaseActivity {
       就不发生这的错误了
 
      */
+    //试看看readme文件是否被同步到这个文件
   }
 
   Observable<List<String>> query(String text) {
