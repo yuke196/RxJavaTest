@@ -1,2 +1,2 @@
 #!/bin/bash
-cat ./app/src/main/java/com/sharyuke/rxjavatest/MyActivity.java > ./README.md
+cat ~/git/RxJavaTest/app/src/main/java/com/sharyuke/rxjavatest/MyActivity.java > ~/git/RxJavaTest/README.md
