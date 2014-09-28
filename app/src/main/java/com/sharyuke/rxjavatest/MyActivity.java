@@ -149,6 +149,27 @@ public class MyActivity extends BaseActivity {
       }
     });
 
+    query("可惜", "不可惜", "非常不可惜").flatMap(new Func1<List<String>, Observable<String>>() {
+      @Override
+      public Observable<String> call(List<String> urls) {
+        for (String s : urls) {
+          Log.i("T11111G=--->> ", "--->>  " + s);
+        }
+        return Observable.from(urls);
+      }
+    }).flatMap(new Func1<String, Observable<String>>() {
+      @Override public Observable<String> call(String s) {
+          Log.i("T11111G=--->> ", "--单个->>  " + s);
+        return Observable.from(s);
+      }
+    }).subscribe(new Action1<List<String>>() {
+      @Override public void call(List<String> strings) {
+        for (String str : strings) {
+          System.out.println("---我是无敌 第三代------->>>   " + str);
+        }
+      }
+    });
+
     /*
       }).subscribe(new Action1<List<String>>() {  ---->>>>  }).toList().subscribe(new Action1<List<String>>() {
       0 9-25 14:48:50.996  32362-32362/com.sharyuke.rxjavatest W/System.err﹕ RxJava => Could not find function language adaptor: Groovy with path: rx.lang.groovy.GroovyAdaptor
