@@ -132,7 +132,15 @@ public class MyActivity extends BaseActivity {
     query("可惜", "不可惜", "非常不可惜").flatMap(new Func1<List<String>, Observable<String>>() {
       @Override
       public Observable<String> call(List<String> urls) {
+        for (String s : urls) {
+          Log.i("TAG=--->> ", "--->>  " + s);
+        }
         return Observable.from(urls);
+      }
+    }).flatMap(new Func1<String, Observable<String>>() {
+      @Override public Observable<String> call(String s) {
+          Log.i("TAG=--->> ", "--单个->>  " + s);
+        return Observable.from(s);
       }
     }).toList().subscribe(new Action1<List<String>>() {
       @Override public void call(List<String> strings) {
@@ -152,6 +160,12 @@ public class MyActivity extends BaseActivity {
 
      */
     //试看看readme文件是否被同步到这个文件
+
+    //query("Hello, world!")
+    //    .flatMap(urls -> Observable.from(urls))
+    //    .flatMap(url -> getTitle(url))
+    //    .filter(title -> title != null)
+    //    .subscribe(title -> System.out.println(title));
   }
 
   Observable<List<String>> query(String text) {
