@@ -149,6 +149,9 @@ public class MyActivity extends BaseActivity {
       }
     });
 
+    //测试
+
+
     query("可惜", "不可惜", "非常不可惜").flatMap(new Func1<List<String>, Observable<String>>() {
       @Override
       public Observable<String> call(List<String> urls) {
