@@ -138,7 +138,7 @@ public class MyActivity extends BaseActivity {
       }
     }).flatMap(new Func1<String, Observable<String>>() {
       @Override public Observable<String> call(String s) {
-          Log.i("TAG=--->> ", "--单个->>  " + s);
+        Log.i("TAG=--->> ", "--单个->>  " + s);
         return Observable.from(s);
       }
     }).toList().subscribe(new Action1<List<String>>() {
@@ -151,8 +151,7 @@ public class MyActivity extends BaseActivity {
 
     //测试
 
-
-    query("可惜", "不可惜", "非常不可惜").flatMap(new Func1<List<String>, Observable<String>>() {
+    query("可惜1", "不可惜1", "非常不可惜1").flatMap(new Func1<List<String>, Observable<String>>() {
       @Override
       public Observable<String> call(List<String> urls) {
         for (String s : urls) {
@@ -162,14 +161,34 @@ public class MyActivity extends BaseActivity {
       }
     }).flatMap(new Func1<String, Observable<String>>() {
       @Override public Observable<String> call(String s) {
-          Log.i("T11111G=--->> ", "--单个->>  " + s);
+        Log.i("T11111G=--->> ", "--单个->>  " + s);
         return Observable.from(s);
       }
     }).subscribe(new Action1<List<String>>() {
       @Override public void call(List<String> strings) {
         for (String str : strings) {
-          System.out.println("--1111-我是无敌 第三代------->>>   " + str);
+          System.out.println("--1111-我是无敌 ，，我这样子是没办法执行的，第三代------->>>   " + str);
         }
+      }
+    });
+
+    query("可惜2", "不可惜2", "非常不可惜2").flatMap(new Func1<List<String>, Observable<String>>() {
+      @Override
+      public Observable<String> call(List<String> urls) {
+        for (String s : urls) {
+          Log.i("T22222=--->> ", "--->>  " + s);
+        }
+        return Observable.from(urls);
+      }
+    }).flatMap(new Func1<String, Observable<String>>() {
+      @Override public Observable<String> call(String s) {
+        Log.i("T222222G=--->> ", "--单个->>  " + s);
+        return Observable.from(s);
+      }
+    }).subscribe(new Action1<String>() {
+      @Override
+      public void call(String s) {
+        Log.i("--->> wo 应该可以执行吧", "---》》 >> " + s);
       }
     });
 
