@@ -169,7 +169,7 @@ public class MyActivity extends BaseActivity {
     }).subscribe(new Action1<List<String>>() {
       @Override public void call(List<String> strings) {
         for (String str : strings) {
-          System.out.println("---我是无敌 第三代------->>>   " + str);
+          System.out.println("--1111-我是无敌 第三代------->>>   " + str);
         }
       }
     });
